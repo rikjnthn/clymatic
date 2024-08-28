@@ -11,16 +11,24 @@ const Header = () => {
 
   return (
     <>
-      <header className="flex justify-between px-4 pt-4 xs:px-9 xs:py-6">
-        <div className="md:hidden">
+      <header className="flex items-center justify-between px-4 pt-4 xs:px-9 xs:py-6">
+        <div className="flex md:hidden">
           <Hamburger onClick={() => setIsOpenHamburger(true)} />
         </div>
 
-        <div className="flex w-2/3 items-center gap-4">
+        <div className="flex w-2/3 items-center justify-between gap-4 md:w-full">
           <StarIcon />
           <div className="w-full md:hidden">
             <SearchBar />
           </div>
+
+          <button
+            className="rounded-md border border-white px-4 py-1 text-white max-md:hidden"
+            type="button"
+            title={"Metrics units"}
+          >
+            metrics
+          </button>
         </div>
       </header>
 

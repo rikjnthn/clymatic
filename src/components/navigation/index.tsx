@@ -29,9 +29,15 @@ const Navigation = ({
         </div>
 
         <div className="my-9">
-          <div>
+          <div className="flex items-center justify-between">
             <span>Units</span>
-            <div></div>
+            <button
+              className="rounded-md border px-4 py-1"
+              type="button"
+              title={"Metrics units"}
+            >
+              metrics
+            </button>
           </div>
         </div>
 

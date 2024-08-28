@@ -24,6 +24,10 @@ const WeatherSummary = () => {
           <div>Today, 23 Aug</div>
         </div>
       </div>
+
+      <span className="absolute bottom-6 left-9 text-sm font-light max-md:hidden">
+        ©️2024, all right reserved
+      </span>
     </div>
   );
 };
