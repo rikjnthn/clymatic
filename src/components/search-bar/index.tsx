@@ -1,15 +1,38 @@
 "use client";
-import React from "react";
+import { usePathname, useRouter } from "next/navigation";
+import React, { useState } from "react";
 
 import SearchIcon from "../search-icon";
 
 const SearchBar = () => {
+  const [search, setSearch] = useState<string>("");
+
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleSearch = (e: React.FormEvent) => {
+    const searchParams = new URLSearchParams();
+    searchParams.set("city", encodeURIComponent(search));
+
+    router.push(`${pathname}?${searchParams.toString()}`);
+
+    setSearch("");
+
+    e.preventDefault();
+  };
+
   return (
-    <form className="flex w-full max-w-sm items-center overflow-clip rounded-full border border-dark-gray bg-white pl-4 pr-2.5 max-md:py-0.5 md:max-w-xs">
+    <form
+      onSubmit={handleSearch}
+      className="flex w-full max-w-sm items-center overflow-clip rounded-full border border-dark-gray bg-white pl-4 pr-2.5 max-md:py-0.5 md:max-w-xs"
+    >
       <input
+        onChange={(e) => setSearch(e.currentTarget.value)}
         className="h-full w-full text-sm md:text-base"
         type="text"
+        name="city"
         placeholder="City..."
+        value={search}
       />
       <SearchIcon />
     </form>
