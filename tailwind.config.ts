@@ -21,6 +21,7 @@ const config: Config = {
       },
       spacing: {
         "15": "3.875rem",
+        "45": "11.25rem",
       },
       fontSize: {
         "6.5xl": "4rem",

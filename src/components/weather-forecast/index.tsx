@@ -1,4 +1,5 @@
 import React from "react";
+
 import WeatherCard from "../weather-card";
 
 const WeatherForecast = ({ title }: { title: string }) => {

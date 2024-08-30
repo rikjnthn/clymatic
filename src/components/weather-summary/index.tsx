@@ -18,9 +18,9 @@ const WeatherSummary = () => {
         </div>
       </div>
 
-      <div className="md:order-first">
+      <div className="w-full md:order-first">
         <div className="flex flex-col items-center gap-2.5 text-sm font-light md:text-base">
-          <div className="pb-2.5">Jakarta, Indonesia</div>
+          <div className="w-1/2 py-2.5 text-center">Jakarta, Indonesia</div>
           <div>Today, 23 Aug</div>
         </div>
       </div>
