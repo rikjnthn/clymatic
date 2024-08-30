@@ -1,4 +1,5 @@
 import React from "react";
+
 import PrecipitationCard from "../precipitation-card";
 
 const PrecipitationForecast = ({ title }: { title: string }) => {
