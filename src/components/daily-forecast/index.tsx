@@ -22,9 +22,9 @@ const DailyForecast = ({ forecast }: { forecast: ForecastType[] }) => {
 
   return (
     <div className="forecast-container">
-      <WeatherForecast title="5-days' Forecast" forecast={dailyForecast} />
+      <WeatherForecast title="Daily Forecast" forecast={dailyForecast} />
       <PrecipitationForecast
-        title="5-days' Precipitation"
+        title="Daily Precipitation"
         forecast={dailyForecast}
       />
     </div>

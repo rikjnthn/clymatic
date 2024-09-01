@@ -17,7 +17,9 @@ const WeatherCard = ({
 }) => {
   return (
     <div className="flex flex-col items-center" title={description}>
-      <div className={clsx("text-sm md:text-base", { "text-gray": !first })}>
+      <div
+        className={clsx("w-max text-sm md:text-base", { "text-gray": !first })}
+      >
         {first ? "Now" : time}
       </div>
       <Image
