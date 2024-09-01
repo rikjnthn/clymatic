@@ -30,9 +30,7 @@ const NotFoundComponent = ({ city }: { city: string }) => {
         <div className="mt-52 flex flex-col items-center justify-center">
           <Image src={NotFoundIllustration} alt="" />
 
-          <div className="mt-4 text-center md:mx-20">
-            {`${city} not found or may not be a valid city`}
-          </div>
+          <div className="mt-4 text-center md:mx-20">{`${city} not found`}</div>
         </div>
       </div>
     </div>

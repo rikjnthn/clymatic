@@ -1,13 +1,48 @@
 import React from "react";
+import axios from "axios";
 
-import WeatherForecast from "../weather-forecast";
-import PrecipitationForecast from "../precipitation-forecast";
 import MoreInformation from "../more-infomation";
 import SearchBar from "../search-bar";
+import HourlyForecast from "../hourly-forecast";
+import DailyForecast from "../daily-forecast";
+import { ForecastApiType, ForecastType } from "@/interface";
 
-const WeatherInformation = () => {
+async function getForecast({
+  lat,
+  lon,
+}: {
+  lat: number;
+  lon: number;
+}): Promise<ForecastType[]> {
+  const { data } = await axios.get<ForecastApiType>(
+    `${process.env.WEATHER_API}/forecast?lat=${lat}&lon=${lon}&appid=${process.env.API_KEY}&units=metric`,
+  );
+
+  const forecast = data.list.map((data) => {
+    return {
+      dt: data.dt,
+      date: data.dt_txt,
+      main: data.weather[0].main,
+      description: data.weather[0].description,
+      temperature: data.main.temp.toFixed(1),
+      precipitation: data.pop,
+    };
+  });
+
+  return forecast;
+}
+
+const WeatherInformation = async ({
+  lat,
+  lon,
+}: {
+  lat: number;
+  lon: number;
+}) => {
+  const forecast = await getForecast({ lat, lon });
+
   return (
-    <div className="weather-information overflow-y-scroll bg-white p-4 py-9 xs:p-9">
+    <div className="weather-information overflow-y-scroll bg-white p-4 py-9 xs:p-9 xs:py-6">
       <div className="w-full max-md:hidden">
         <nav className="flex w-full justify-between gap-4">
           <div className="flex items-center justify-between">
@@ -23,19 +58,13 @@ const WeatherInformation = () => {
       </div>
 
       <div className="flex max-w-full flex-col gap-16">
-        <div className="forecast-container">
-          <WeatherForecast title="Today's Forecast" />
-          <PrecipitationForecast title="Today's Precipitation" />
-        </div>
+        <HourlyForecast forecast={forecast} />
 
-        <div className="forecast-container">
-          <WeatherForecast title="7-days' Forecast" />
-          <PrecipitationForecast title="7-days' Precipitation" />
-        </div>
+        <DailyForecast forecast={forecast} />
       </div>
 
       <div className="w-full">
-        <MoreInformation />
+        <MoreInformation lat={lat} lon={lon} />
       </div>
     </div>
   );

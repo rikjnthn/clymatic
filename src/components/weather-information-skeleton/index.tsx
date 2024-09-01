@@ -5,7 +5,7 @@ import ForecastSkeleton from "../forecast-skeleton";
 
 const WeatherInformationSkeleton = () => {
   return (
-    <div className="weather-information overflow-y-scroll bg-white p-4 py-9 xs:p-9">
+    <div className="weather-information overflow-y-scroll bg-white p-4 py-9 xs:p-9 xs:py-6">
       <div className="w-full max-md:hidden">
         <nav className="flex w-full justify-between gap-4">
           <div className="flex items-center justify-between">

@@ -1,18 +1,31 @@
 import Image from "next/image";
 import React from "react";
+import clsx from "clsx";
 
-const PrecipitationCard = () => {
+const PrecipitationCard = ({
+  first,
+  precipitation,
+  time,
+}: {
+  first: boolean;
+  precipitation: number;
+  time: string;
+}) => {
   return (
-    <div className="flex flex-col items-center">
-      <div className="text-sm text-gray md:text-base">12.00</div>
+    <div className="flex flex-col items-center" title="Precipitation">
+      <div className={clsx("text-sm md:text-base", { "text-gray": !first })}>
+        {first ? "Now" : time}
+      </div>
       <Image
-        className="min-w-[40px] md:min-w-[50px]"
+        className="min-w-[50px]"
         src="/black/rain-drop.svg"
         alt="precipitation"
-        width={40}
-        height={40}
+        width={50}
+        height={50}
       />
-      <div className="text-sm md:text-base">31°</div>
+      <div className="text-sm md:text-base">
+        {(precipitation * 100).toFixed(0)} %
+      </div>
     </div>
   );
 };
