@@ -15,7 +15,7 @@ const MoreInformationCard = ({
 
       {icon}
 
-      <div className="text-sm md:text-base">{data}</div>
+      <div className="w-max text-sm md:text-base">{data}</div>
     </div>
   );
 };

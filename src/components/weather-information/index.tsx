@@ -1,36 +1,11 @@
 import React from "react";
-import axios from "axios";
 
 import MoreInformation from "../more-infomation";
 import SearchBar from "../search-bar";
 import HourlyForecast from "../hourly-forecast";
 import DailyForecast from "../daily-forecast";
-import { ForecastApiType, ForecastType } from "@/interface";
-
-async function getForecast({
-  lat,
-  lon,
-}: {
-  lat: number;
-  lon: number;
-}): Promise<ForecastType[]> {
-  const { data } = await axios.get<ForecastApiType>(
-    `${process.env.WEATHER_API}/forecast?lat=${lat}&lon=${lon}&appid=${process.env.API_KEY}&units=metric`,
-  );
-
-  const forecast = data.list.map((data) => {
-    return {
-      dt: data.dt,
-      date: data.dt_txt,
-      main: data.weather[0].main,
-      description: data.weather[0].description,
-      temperature: data.main.temp.toFixed(1),
-      precipitation: data.pop,
-    };
-  });
-
-  return forecast;
-}
+import getMoreWeatherInformation from "@/util/get-weather-information";
+import getForecast from "@/util/get-forecast";
 
 const WeatherInformation = async ({
   lat,
@@ -39,7 +14,12 @@ const WeatherInformation = async ({
   lat: number;
   lon: number;
 }) => {
-  const forecast = await getForecast({ lat, lon });
+  const forecastFetch = getForecast({ lat, lon });
+  const moreWeatherInformationFetch = getMoreWeatherInformation({ lat, lon });
+  const [forecast, moreWeatherInformation] = await Promise.all([
+    forecastFetch,
+    moreWeatherInformationFetch,
+  ]);
 
   return (
     <div className="weather-information overflow-y-scroll bg-white p-4 py-9 xs:p-9 xs:py-6">
@@ -64,7 +44,7 @@ const WeatherInformation = async ({
       </div>
 
       <div className="w-full">
-        <MoreInformation lat={lat} lon={lon} />
+        <MoreInformation {...moreWeatherInformation} />
       </div>
     </div>
   );

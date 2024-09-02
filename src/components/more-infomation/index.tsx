@@ -1,40 +1,17 @@
+"use client";
 import Image from "next/image";
 import React from "react";
-import axios from "axios";
 
 import MoreInformationCard from "../more-infomation-card";
-import { MoreInfomationWeatherType, WeatherSummaryApiType } from "@/interface";
+import { MoreInfomationWeatherType } from "@/interface";
 
-async function getMoreWeatherInformation({
-  lat,
-  lon,
-}: {
-  lat: number;
-  lon: number;
-}): Promise<MoreInfomationWeatherType> {
-  const { data } = await axios.get<WeatherSummaryApiType>(
-    `${process.env.WEATHER_API}/weather?lat=${lat}&lon=${lon}&units=metric&appid=${process.env.API_KEY}`,
-  );
-
-  return {
-    wind: data.wind,
-    humidity: data.main.humidity,
-    pressure: data.main.pressure,
-    visibility: data.visibility,
-    temperature: {
-      min: data.main.temp_min,
-      max: data.main.temp_max,
-    },
-  };
-}
-
-const MoreInformation = async ({ lat, lon }: { lat: number; lon: number }) => {
-  const { humidity, pressure, temperature, visibility, wind } =
-    await getMoreWeatherInformation({
-      lat,
-      lon,
-    });
-
+const MoreInformation = ({
+  humidity,
+  pressure,
+  temperature,
+  visibility,
+  wind,
+}: MoreInfomationWeatherType) => {
   const formattedData = {
     humidity: `${humidity} %`,
     pressure: `${(pressure * 0.0009869233).toFixed(3)} atm`, //Pressure, 1hPa = 0.0009869233 atm
