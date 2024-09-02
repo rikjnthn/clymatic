@@ -1,3 +1,5 @@
+import { cookies } from "next/headers";
+
 import HomePage from "@/components/home-page";
 import WeatherPage from "@/components/weather-page";
 
@@ -6,11 +8,13 @@ export default function Home({
 }: {
   searchParams: { city?: string };
 }) {
-  const city = decodeURIComponent(searchParams.city ?? "");
+  const cityFromCookie = cookies().get("city");
 
-  if (!searchParams.city || searchParams.city?.length === 0) {
-    return <HomePage />;
-  }
+  const city = decodeURIComponent(
+    searchParams.city ?? cityFromCookie?.value ?? "",
+  );
+
+  if (!city) return <HomePage />;
 
   return <WeatherPage city={city} />;
 }
