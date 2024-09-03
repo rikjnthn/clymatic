@@ -4,6 +4,7 @@ import clsx from "clsx";
 
 import CloseIcon from "../close-icon";
 import { SetStateType } from "@/interface";
+import ChangeUnitsButton from "../change-units-button";
 
 const Navigation = ({
   isOpenHamburger,
@@ -31,13 +32,7 @@ const Navigation = ({
         <div className="my-9">
           <div className="flex items-center justify-between">
             <span>Units</span>
-            <button
-              className="rounded-md border px-4 py-1"
-              type="button"
-              title={"Metrics units"}
-            >
-              metrics
-            </button>
+            <ChangeUnitsButton className="rounded-md border px-4 py-1" />
           </div>
         </div>
 
@@ -49,7 +44,7 @@ const Navigation = ({
       <div
         onClick={() => setIsOpenHamburger(false)}
         className={clsx(
-          "dark-overlay bg-black bg-opacity-50",
+          "dark-overlay bg-black bg-opacity-50 md:hidden",
           isOpenHamburger ? "fixed" : "hidden",
         )}
       />

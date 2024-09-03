@@ -1,31 +1,11 @@
 import Image from "next/image";
 import React from "react";
-import axios from "axios";
 
 import { WEATHER_IMAGE } from "@/constant";
-import { WeatherSummaryApiType, WeatherSummaryType } from "@/interface";
 import Location from "../location";
-
-const getWeatherSummary = async ({
-  lat,
-  lon,
-}: {
-  lat: number;
-  lon: number;
-}): Promise<WeatherSummaryType> => {
-  const { data } = await axios.get<WeatherSummaryApiType>(
-    `${process.env.WEATHER_API}/weather?lat=${lat}&lon=${lon}&appid=${process.env.API_KEY}&units=metric`,
-  );
-
-  const weatherSummary = {
-    temp: data.main.temp.toFixed(1),
-    feels_like: data.main.feels_like.toFixed(1),
-    main: data.weather[0].main,
-    description: data.weather[0].description,
-  };
-
-  return weatherSummary;
-};
+import getWeatherSummary from "@/util/get-weather-summary";
+import WeatherSummaryTemperature from "../weather-summary-temperature";
+import WeatherSummaryFeelsTemperature from "../weather-summary-feels-temperature";
 
 const WeatherSummary = async ({
   countryId,
@@ -46,13 +26,11 @@ const WeatherSummary = async ({
   return (
     <div className="grid w-full place-items-center text-white max-md:py-9 md:mt-32 md:gap-12">
       <div className="flex flex-col items-center">
-        <div className="text-6.5xl lg:text-8xl">{weatherSummary.temp}°C</div>
+        <WeatherSummaryTemperature temp={weatherSummary.temp} />
 
         <div className="flex items-center gap-2.5 py-2.5 md:py-6">
           <span className="text-sm font-light md:text-base">Feels like</span>
-          <span className="text-2xl lg:text-4xl">
-            {weatherSummary?.feels_like}°C
-          </span>
+          <WeatherSummaryFeelsTemperature temp={weatherSummary.feels_like} />
         </div>
 
         <div className="flex flex-wrap items-center gap-2.5">

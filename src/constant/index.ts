@@ -22,3 +22,5 @@ export const WEATHER_IMAGE = {
   squall: "mist",
   tornado: "mist",
 };
+
+export const sixtyDaysInMs = 216000000;

@@ -9,19 +9,15 @@ export function setCookie(
 }
 
 export function getCookies(key?: string) {
+  if (document.cookie.length === 0) return;
 
-  if (document.cookie.length === 0) return
+  const cookies = document.cookie.split(";").map((cookie) => {
+    const splitCookie = cookie.split("=");
 
-  const cookies = document.cookie
-    .split(";")
-    .map((cookie) => {
-
-      const splitCookie = cookie.split("=")
-
-      return {
-        [splitCookie[0].trim()]: splitCookie[1]
-      }
-    })
+    return {
+      [splitCookie[0].trim()]: splitCookie[1],
+    };
+  });
 
   const formattedCookies = Object.assign({}, ...cookies);
 

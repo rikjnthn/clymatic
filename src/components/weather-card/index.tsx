@@ -1,6 +1,9 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 import clsx from "clsx";
+
+import { useUnits } from "@/context/units-context";
 
 const WeatherCard = ({
   first,
@@ -15,6 +18,14 @@ const WeatherCard = ({
   time: string;
   description: string;
 }) => {
+  const { units } = useUnits();
+
+  const tempInNumber = parseFloat(temperature);
+  const formattedTemperature =
+    units === "metric"
+      ? `${temperature}°`
+      : `${((tempInNumber * 9) / 5 + 32).toFixed(1)}°`;
+
   return (
     <div className="flex flex-col items-center" title={description}>
       <div
@@ -29,7 +40,7 @@ const WeatherCard = ({
         width={50}
         height={50}
       />
-      <div className="text-sm md:text-base">{temperature}°</div>
+      <div className="w-max text-sm md:text-base">{formattedTemperature}</div>
     </div>
   );
 };

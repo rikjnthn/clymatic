@@ -1,24 +1,27 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import MoreInformationCard from "../more-infomation-card";
 import { MoreInfomationWeatherType } from "@/interface";
+import formatMoreInformation from "@/util/format-more-information";
+import { useUnits } from "@/context/units-context";
 
-const MoreInformation = ({
-  humidity,
-  pressure,
-  temperature,
-  visibility,
-  wind,
-}: MoreInfomationWeatherType) => {
-  const formattedData = {
-    humidity: `${humidity} %`,
-    pressure: `${(pressure * 0.0009869233).toFixed(3)} atm`, //Pressure, 1hPa = 0.0009869233 atm
-    temperature: `${temperature.min.toFixed(1)}° / ${temperature.max.toFixed(1)}°`,
-    visibility: `${visibility / 1000} km`,
-    wind_speed: `${wind.speed} m/s`,
-  };
+const MoreInformation = (props: MoreInfomationWeatherType) => {
+  const [formattedData, setFormattedData] = useState({
+    humidity: "",
+    pressure: "",
+    temperature: "",
+    visibility: "",
+    wind_speed: "",
+  });
+
+  const { units } = useUnits();
+
+  useEffect(() => {
+    const formattedData = formatMoreInformation(props, units);
+    setFormattedData(formattedData);
+  }, [units, props]);
 
   return (
     <div className="flex w-full flex-col gap-5">
@@ -34,7 +37,7 @@ const MoreInformation = ({
               width={50}
               height={50}
               title="Wind"
-              style={{ rotate: `${wind.deg}deg` }}
+              style={{ rotate: `${props.wind.deg}deg` }}
             />
           }
         />
