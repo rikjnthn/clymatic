@@ -3,8 +3,7 @@ import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 import { deleteCookie, getCookies, setCookie } from "@/util/cookie";
-
-const sixtyDaysInMs = 216000000;
+import { sixtyDaysInMs } from "@/constant";
 
 const StarIcon = () => {
   const [isDefault, setIsDefault] = useState<boolean>(false);

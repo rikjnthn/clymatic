@@ -84,3 +84,5 @@ export interface GeolocationType {
   lon: number;
   countryId: string;
 }
+
+export type UnitsType = "metric" | "imperial";

@@ -1,4 +1,5 @@
 "use client";
+import { useSearchParams } from "next/navigation";
 import React, { useState } from "react";
 import clsx from "clsx";
 
@@ -6,7 +7,7 @@ import Hamburger from "../hamburger";
 import StarIcon from "../star-icon";
 import SearchBar from "../search-bar";
 import Navigation from "../navigation";
-import { useSearchParams } from "next/navigation";
+import ChangeUnitsButton from "../change-units-button";
 
 const Header = () => {
   const [isOpenHamburger, setIsOpenHamburger] = useState<boolean>(false);
@@ -28,13 +29,9 @@ const Header = () => {
             <SearchBar />
           </div>
 
-          <button
-            className="ml-auto rounded-md border border-white px-4 py-1 text-white max-md:hidden"
-            type="button"
-            title={"Metrics units"}
-          >
-            metrics
-          </button>
+          <div className="max-md:hidden">
+            <ChangeUnitsButton className="ml-auto rounded-md border border-white px-4 py-1 text-white" />
+          </div>
         </div>
       </header>
 
