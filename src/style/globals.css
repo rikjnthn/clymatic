@@ -51,13 +51,11 @@ input:focus {
   gap: 4rem;
   align-items: center;
   max-width: 100%;
-  border-top-left-radius: 1.25rem;
-  border-top-right-radius: 1.25rem;
 }
 
 .more-information-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 75px);
+  grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
   justify-content: center;
   gap: 1.25rem 1rem;
   min-width: 100%;
@@ -96,10 +94,6 @@ input:focus {
     flex-direction: column;
     align-items: center;
     width: 100%;
-  }
-
-  .weather-information {
-    border-radius: 0;
   }
 
   .more-information-container {

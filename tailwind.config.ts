@@ -14,6 +14,11 @@ const config: Config = {
         primary: {
           base: "#00529E",
         },
+        secondary: {
+          base: "#007ca3",
+          light: "#0090bd",
+          dark: "#015b78",
+        },
         "dark-gray": "#6A6A6A",
       },
       screens: {

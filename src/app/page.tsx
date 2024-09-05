@@ -1,27 +1,22 @@
-import { Suspense } from "react";
+import { cookies } from "next/headers";
 
-import Header from "@/components/header";
-import WeatherInformation from "@/components/weather-information";
-import WeatherSummary from "@/components/weather-summary";
-import WeatherSummarySkeleton from "@/components/weather-summary-skeleton";
-import WeatherInformationSkeleton from "@/components/weather-information-skeleton";
+import HomePage from "@/components/home-page";
+import { UnitsProvider } from "@/context/units-context";
 
-export default function Home() {
+export default function Page({
+  searchParams,
+}: {
+  searchParams: { city?: string };
+}) {
+  const cityFromCookie = cookies().get("city");
+
+  const city = decodeURIComponent(
+    searchParams.city ?? cityFromCookie?.value ?? "",
+  );
+
   return (
-    <div className="md:flex">
-      <div className="h-full bg-page md:fixed md:w-1/3 md:max-w-md">
-        <Header />
-
-        <Suspense fallback={<WeatherSummarySkeleton />}>
-          <WeatherSummary />
-        </Suspense>
-      </div>
-
-      <div className="relative h-full md:ml-auto md:w-2/3">
-        <Suspense fallback={<WeatherInformationSkeleton />}>
-          <WeatherInformation />
-        </Suspense>
-      </div>
-    </div>
+    <UnitsProvider>
+      <HomePage city={city} />;
+    </UnitsProvider>
   );
 }
