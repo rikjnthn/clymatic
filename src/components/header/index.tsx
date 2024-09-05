@@ -16,7 +16,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="flex items-center justify-between px-4 pt-4 xs:px-9 xs:py-6">
+      <header className="flex items-center justify-between px-4 py-4 xs:px-9 xs:py-6">
         <div className="flex md:hidden">
           <Hamburger onClick={() => setIsOpenHamburger(true)} />
         </div>

@@ -16,7 +16,7 @@ export default function Page({
 
   return (
     <UnitsProvider>
-      <HomePage city={city} />;
+      <HomePage city={city} />
     </UnitsProvider>
   );
 }
