@@ -8,7 +8,12 @@ const Error = () => {
   return (
     <div className="height-full grid place-items-center">
       <div className="flex flex-col items-center">
-        <Image className="w-52" src={ErrorIllustration} alt="" />
+        <Image
+          className="w-52"
+          src={ErrorIllustration}
+          alt=""
+          role="presentation"
+        />
 
         <div className="mb-4 mt-16 text-2xl font-bold md:text-4xl">
           Something Went Wrong

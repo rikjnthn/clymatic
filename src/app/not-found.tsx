@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 import NotFoundIllustration from "../../public/black/not-found.svg";
-import Link from "next/link";
 
 const NotFound = () => {
   return (
@@ -15,7 +15,7 @@ const NotFound = () => {
 
       <Link
         href="/"
-        className="bg-secondary-base hover:bg-secondary-light active:bg-secondary-dark mt-4 rounded-md px-4 py-3 text-white"
+        className="mt-4 rounded-md bg-secondary-base px-4 py-3 text-white hover:bg-secondary-light active:bg-secondary-dark"
       >
         Go to home
       </Link>
