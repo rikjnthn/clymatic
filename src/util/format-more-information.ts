@@ -1,4 +1,4 @@
-import { MoreInfomationWeatherType } from "@/interface";
+import { MoreInfomationWeatherType, UnitsType } from "@/interface";
 
 export default function formatMoreInformation(
   {
@@ -8,7 +8,7 @@ export default function formatMoreInformation(
     visibility,
     wind,
   }: MoreInfomationWeatherType,
-  units: "metric" | "imperial",
+  units: UnitsType,
 ) {
   const formattedData = {
     humidity: `${humidity} %`,

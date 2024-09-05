@@ -2,7 +2,7 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
-import MoreInformationCard from "../more-infomation-card";
+import MoreInformationCard from "../more-information-card";
 import { MoreInfomationWeatherType } from "@/interface";
 import formatMoreInformation from "@/util/format-more-information";
 import { useUnits } from "@/context/units-context";
@@ -86,7 +86,7 @@ const MoreInformation = (props: MoreInfomationWeatherType) => {
           icon={
             <Image
               src="/black/temperature.svg"
-              alt="Wind"
+              alt="High / Low"
               width={50}
               height={50}
               title="High / Low temperature"

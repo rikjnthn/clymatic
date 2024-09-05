@@ -8,7 +8,7 @@ export function setCookie(
   }`;
 }
 
-export function getCookies(key?: string) {
+export function getAllCookies(): Record<string, any> | undefined {
   if (document.cookie.length === 0) return;
 
   const cookies = document.cookie.split(";").map((cookie) => {
@@ -19,15 +19,24 @@ export function getCookies(key?: string) {
     };
   });
 
-  const formattedCookies = Object.assign({}, ...cookies);
-
-  if (key) return formattedCookies[key];
+  const formattedCookies = Object.assign({}, ...cookies) as Record<
+    string,
+    string
+  >;
 
   return formattedCookies;
 }
 
+export function getCookie<R = unknown>(key: string): R | undefined {
+  const cookies = getAllCookies();
+
+  if (!cookies) return;
+
+  return cookies[key];
+}
+
 export function deleteCookie(key: string) {
-  if (getCookies(key)) {
+  if (getCookie(key)) {
     document.cookie = `${key}=deleted; expires=${new Date(-1)};`;
   }
 }

@@ -23,7 +23,7 @@ const WeatherCard = ({
   const tempInNumber = parseFloat(temperature);
   const formattedTemperature =
     units === "metric"
-      ? `${temperature}°`
+      ? `${tempInNumber.toFixed(1)}°`
       : `${((tempInNumber * 9) / 5 + 32).toFixed(1)}°`;
 
   return (

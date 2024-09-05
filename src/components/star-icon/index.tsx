@@ -2,7 +2,7 @@
 import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-import { deleteCookie, getCookies, setCookie } from "@/util/cookie";
+import { deleteCookie, getCookie, setCookie } from "@/util/cookie";
 import { sixtyDaysInMs } from "@/constant";
 
 const StarIcon = () => {
@@ -33,7 +33,7 @@ const StarIcon = () => {
   };
 
   useEffect(() => {
-    if (getCookies("city") === city) {
+    if (getCookie("city") === city) {
       setIsDefault(true);
     } else setIsDefault(false);
   }, [city]);

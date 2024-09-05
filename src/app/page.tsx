@@ -1,9 +1,9 @@
 import { cookies } from "next/headers";
 
 import HomePage from "@/components/home-page";
-import WeatherPage from "@/components/weather-page";
+import { UnitsProvider } from "@/context/units-context";
 
-export default function Home({
+export default function Page({
   searchParams,
 }: {
   searchParams: { city?: string };
@@ -14,7 +14,9 @@ export default function Home({
     searchParams.city ?? cityFromCookie?.value ?? "",
   );
 
-  if (!city) return <HomePage />;
-
-  return <WeatherPage city={city} />;
+  return (
+    <UnitsProvider>
+      <HomePage city={city} />;
+    </UnitsProvider>
+  );
 }
