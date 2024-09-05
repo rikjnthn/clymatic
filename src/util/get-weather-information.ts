@@ -1,4 +1,5 @@
 import axios from "axios";
+import "server-only";
 
 import { MoreInfomationWeatherType, WeatherSummaryApiType } from "@/interface";
 

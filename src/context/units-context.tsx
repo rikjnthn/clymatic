@@ -2,7 +2,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 import { SetStateType, UnitsType } from "@/interface";
-import { getCookies } from "@/util/cookie";
+import { getCookie } from "@/util/cookie";
 
 const UnitsContext = createContext<UnitsContextType | undefined>(undefined);
 
@@ -19,7 +19,7 @@ export const UnitsProvider = ({ children }: { children: React.ReactNode }) => {
   const [units, setUnits] = useState<UnitsType>("metric");
 
   useEffect(() => {
-    const units = getCookies("units") ?? "metric";
+    const units = getCookie<UnitsType>("units") ?? "metric";
 
     setUnits(units);
   }, []);

@@ -1,6 +1,6 @@
 import React from "react";
 
-import MoreInformation from "../more-infomation";
+import MoreInformation from "../more-information";
 import SearchBar from "../search-bar";
 import HourlyForecast from "../hourly-forecast";
 import DailyForecast from "../daily-forecast";

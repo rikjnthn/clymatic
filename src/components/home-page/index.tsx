@@ -1,8 +1,12 @@
 import React from "react";
+
 import Header from "../header";
 import SearchBar from "../search-bar";
+import WeatherPage from "../weather-page";
 
-const HomePage = () => {
+const HomePage = ({ city }: { city?: string }) => {
+  if (city) return <WeatherPage city={city} />;
+
   return (
     <div className="md:flex">
       <div className="h-full bg-page md:fixed md:w-1/3 md:max-w-md">

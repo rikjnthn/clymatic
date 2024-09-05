@@ -5,7 +5,7 @@ import { setCookie } from "@/util/cookie";
 import { sixtyDaysInMs } from "@/constant";
 import { useUnits } from "@/context/units-context";
 
-const ChangeUnitsButton = ({ className }: { className: string }) => {
+const ChangeUnitsButton = ({ className }: { className?: string }) => {
   const { units, setUnits } = useUnits();
 
   const changeUnits = () => {

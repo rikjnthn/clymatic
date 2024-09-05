@@ -21,7 +21,7 @@ const PrecipitationCard = ({
       <Image
         className="min-w-[50px]"
         src="/black/rain-drop.svg"
-        alt="precipitation"
+        alt="Precipitation"
         width={50}
         height={50}
       />
