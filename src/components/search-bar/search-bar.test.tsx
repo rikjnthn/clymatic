@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import SearchBar from ".";
@@ -31,5 +31,23 @@ describe("Search Bar Component", () => {
     await userEvent.type(input, inputValue);
 
     expect(input).toHaveValue(inputValue);
+  });
+
+  it("should handle search when on submit", async () => {
+    const mockHandleSearch = jest.fn();
+
+    render(<SearchBar />);
+
+    const input = screen.getByPlaceholderText("City...");
+
+    const inputValue = "city_name";
+    await userEvent.type(input, inputValue);
+
+    const form = screen.getByRole("form");
+    form.onsubmit = mockHandleSearch;
+
+    fireEvent.submit(form);
+
+    expect(mockHandleSearch).toHaveBeenCalled();
   });
 });
