@@ -1,11 +1,17 @@
-import React from "react";
+import React, { Suspense } from "react";
 
 import Header from "../header";
 import SearchBar from "../search-bar";
 import WeatherPage from "../weather-page";
+import WeatherPageSkeleton from "../weather-page-skeleton";
 
 const HomePage = ({ city }: { city?: string }) => {
-  if (city) return <WeatherPage city={city} />;
+  if (city)
+    return (
+      <Suspense fallback={<WeatherPageSkeleton />}>
+        <WeatherPage city={city} />
+      </Suspense>
+    );
 
   return (
     <div className="md:flex">
